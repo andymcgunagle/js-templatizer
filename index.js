@@ -1,9 +1,16 @@
-import templatizeFile from './templatizerFunctions/templatizeFile.js';
+import templatize from './templatizerFunctions/templatize.js';
 
 const jsTemplatizer = {
-  templatizeFile,
+  templatize,
 };
 
-jsTemplatizer.templatizeFile('userModel.js', []);
+jsTemplatizer.templatize(
+  'userModel.js',
+  {
+    user: 'lowerCaseParam1',
+    User: 'upperCaseParam1'
+  },
+  'modelGenerator'
+);
 
 export default jsTemplatizer;

@@ -1,30 +1,44 @@
+// TODO: Add logic that enables something like this:
+// const myObject = {
+//   user: 'dog',
+//   includeCapitalized: true,
+// }
+// And appends a quick function to the string to capitalize the variables
+
 const getParameters = (stringsToReplace) => {
-  let parameters = '';
-  let parametersWithQuotes = '';
+  let parameters = [];
+  let parametersWithQuotes = [];
   let allParameters = [];
-  const lengthOfReplacementStrings = stringsToReplace.length;
 
-  stringsToReplace.forEach((object, index) => {
-    if (index === lengthOfReplacementStrings - 1) {
-      const parameter = Object.keys(object)[0];
-      parameters = parameters + `${object[parameter]}`;
+  for (const replaceThisString in stringsToReplace) {
+    const replacement = stringsToReplace[replaceThisString];
+    parameters.push(replacement);
+  };
+
+  for (const replaceThisString in stringsToReplace) {
+    const replacement = stringsToReplace[replaceThisString];
+    parametersWithQuotes.push(`'${replacement}'`);
+  };
+
+  const lengthOfParameters = parameters.length;
+
+  parameters = parameters.map((parameter, index) => {
+    if (index === lengthOfParameters - 1) {
+      return `${parameter}`;
     } else {
-      const parameter = Object.keys(object)[0];
-      parameters = parameters + `${object[parameter]}, `;
+      return `${parameter},`;
     };
   });
 
-  stringsToReplace.forEach((object, index) => {
-    if (index === lengthOfReplacementStrings - 1) {
-      const parameter = Object.keys(object)[0];
-      parametersWithQuotes = parametersWithQuotes + `'${object[parameter]}'`;
+  parametersWithQuotes = parametersWithQuotes.map((parameter, index) => {
+    if (index === lengthOfParameters - 1) {
+      return `${parameter}`;
     } else {
-      const parameter = Object.keys(object)[0];
-      parametersWithQuotes = parametersWithQuotes + `'${object[parameter]}', `;
+      return `${parameter},`;
     };
   });
 
-  allParameters.push(parameters, parametersWithQuotes);
+  allParameters.push(parameters.join(' '), parametersWithQuotes.join(' '));
 
   return allParameters;
 };

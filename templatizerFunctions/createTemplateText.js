@@ -9,11 +9,11 @@ const createTemplateText = (line, replaceThese) => {
 
   let newLine = `    \`${line}\\n\` +\n`;
 
-  for (let object of replaceThese) {
-    const wordToReplace = Object.keys(object)[0];
+  for (const replaceThisString in replaceThese) {
+    const withThisString = replaceThese[replaceThisString];
 
-    if (line.includes(wordToReplace)) {
-      newLine = newLine.split(wordToReplace).join(`\${${object[wordToReplace]}}`);
+    if (line.includes(replaceThisString)) {
+      newLine = newLine.split(replaceThisString).join(`\${${withThisString}}`);
     };
   };
 
