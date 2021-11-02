@@ -8,7 +8,6 @@ const createEndOfFileText = (parameters, parametersWithQuotes) => {
     `\n` +
     `  try {\n` +
     `    const promise = await fs.writeFile('newFile.js', fileText);\n` +
-    `\n` +
     `    return promise;\n` +
     `  } catch (error) {\n` +
     `    console.error(error);\n` +
