@@ -14,15 +14,19 @@ You can also turn any strings in the original file you're templatizing into vari
 
 ### templatize method example
 
-Let's say we have a file called **userModel.js** we'd like to templatize. Then, in the same directory, we have the following in **templatizer.js**:
+Let's say we have a file called **userModel.js** we'd like to templatize so we can quickly reuse the code we've already written.
+
+In the same directory as **userModel.js**, we have the following in **templatizer.js**:
 
 ```javascript
-import templatize from 'js-templatizer';
+import jsTemplatizer from 'js-templatizer';
 
 jsTemplatizer.templatize('userModel.js', { user: 'param1' }, 'modelGenerator');
 ```
 
-Note that the first argument, the file to templatize, would need to be a relative path to **userModel.js** if **templatizer.js** and **userModel.js** were not in the same directory. For example, if **userModel.js** was one directory level up, the first argument to the function call in the example above would be `'../userModel.js'`.
+Note that the first argument to the `templatize` method, the file to templatize, would need to be a relative path to **userModel.js** if **templatizer.js** and **userModel.js** were not in the same directory.
+
+For example, if **userModel.js** was one directory level up, the first argument to the function call in the example above would be `'../userModel.js'`.
 
 Running `node templatizer.js` would create a new file called **modelGenerator.js** containing the following:
 
