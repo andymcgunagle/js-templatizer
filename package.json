@@ -6,7 +6,7 @@
   "type": "module",
   "homepage": "https://github.com/andymcgunagle/js-templatizer",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "keywords": [
     "automation",
@@ -19,5 +19,8 @@
     "templatizer"
   ],
   "author": "amcgunagle",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
 }

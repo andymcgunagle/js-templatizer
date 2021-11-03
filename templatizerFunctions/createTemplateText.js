@@ -18,6 +18,6 @@ const createTemplateText = (line, replaceThese) => {
   };
 
   return newLine;
-}
+};
 
 export default createTemplateText;

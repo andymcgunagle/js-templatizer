@@ -4,13 +4,9 @@ const formatNewFileName = (newFileName) => {
     newFileName = `newTemplateGenerator${randomNum}.js`;
   };
 
-  console.log(newFileName)
-
   if (!newFileName.includes('.js') && !newFileName.includes('.ts')) {
     newFileName = `${newFileName}.js`;
   };
-
-  console.log(newFileName)
 
   return newFileName;
 };
