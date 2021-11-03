@@ -1,6 +1,6 @@
 {
   "name": "js-templatizer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Transform any file into new file with a template of the original file. The new file will also include a function that enables you to generate additional new files from the template.",
   "main": "index.js",
   "type": "module",
