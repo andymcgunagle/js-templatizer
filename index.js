@@ -1,10 +1,19 @@
-import templatize from './templatizerFunctions/templatize.js';
+import templatize from './functions/templatize.js';
 
 const jsTemplatizer = {
   templatize,
 };
 
-// TODO: Need to make the file extension more general 
-// jsTemplatizer.templatize('HELLO.txt', { WORLD: 'Bobby!' }, 'myNewFile');
+// TEST
+// templatize('sample.txt', {
+//   world: 'Bobby',
+// }, 'myNewFile');
+
+// TODO: Refactor to an object
+// templatize({
+//   filetoTemplatize: 'sample.txt',
+//   convertToParams: [],
+//   templatizerFileName: 'myNewTemplatizer',
+// });
 
 export default jsTemplatizer;

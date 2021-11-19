@@ -1,4 +1,4 @@
-import formatNewFileName from "../templatizerFunctions/formatNewFileName.js";
+import formatNewFileName from "../functions/formatNewFileName.js";
 
 test('convert fileName from file to specifically formatted string', () => {
   expect(formatNewFileName('myFile.js')).toBe('myFile.js');

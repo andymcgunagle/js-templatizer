@@ -1,4 +1,4 @@
-import createBeginningOfFileText from "../templatizerFunctions/createBeginningOfFileText.js";
+import createBeginningOfFileText from "../functions/createBeginningOfFileText.js";
 
 const result1 = `import fs from 'fs/promises';
 

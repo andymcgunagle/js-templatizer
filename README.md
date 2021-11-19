@@ -33,12 +33,12 @@ Running `node templatizer.js` would create a new file called **modelGenerator.js
 ```javascript
 import fs from 'fs/promises';
 
-export const createString = (param1) => {
+export const generateNewFileText = (param1) => {
   return `import mongoose from 'mongoose';\n` + `\n` + `const UserSchema = new mongoose.Schema({\n` + `  email: {\n` + `    type: String,\n` + `    required: true,\n` + `  },\n` + `  password: {\n` + `    type: String,\n` + `    required: true,\n` + `  },\n` + `  name: {\n` + `    type: String,\n` + `  },\n` + `  age: {\n` + `    type: Number,\n` + `  },\n` + `});\n` + `\n` + `const User = mongoose.model('${param1}', UserSchema);\n` + `export default User;\n`;
 };
 
-export const writeToNewFile = async (param1) => {
-  const fileText = createString(param1);
+export const generateNewFile = async (param1) => {
+  const fileText = generateNewFileText(param1);
 
   try {
     const promise = await fs.writeFile('newFile.js', fileText);
@@ -48,10 +48,10 @@ export const writeToNewFile = async (param1) => {
   }
 };
 
-// writeToNewFile('param1');
+// generateNewFile('param1');
 ```
 
-At the bottom of the new file you'll notice the `writeToNewFile` function call that is commented out. Uncomment it and pass in any parameters you'd like to include. Then, in this example, you'd call `node modelGenerator.js` to generate a new file from your template.
+At the bottom of the new file you'll notice the `generateNewFile` function call that is commented out. Uncomment it and pass in any parameters you'd like to include. Then, in this example, you'd call `node modelGenerator.js` to generate a new file from your template.
 
 ### templatize method parameters
 

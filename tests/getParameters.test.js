@@ -1,4 +1,4 @@
-import getParameters from '../templatizerFunctions/getParameters.js';
+import getParameters from '../functions/getParameters.js';
 
 const params1 = { world: 'earth' };
 const expected1 = ['earth', "'earth'"]

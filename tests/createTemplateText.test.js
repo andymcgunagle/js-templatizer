@@ -1,4 +1,4 @@
-import createTemplateText from "../templatizerFunctions/createTemplateText.js";
+import createTemplateText from "../functions/createTemplateText.js";
 
 const line1 = 'Hello, world!';
 const result1 = '`Hello, world!\\n` +';

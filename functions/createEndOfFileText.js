@@ -2,19 +2,19 @@ const createEndOfFileText = (parameters, parametersWithQuotes) => {
   return (
     `  );\n` +
     `};\n\n` +
-    `export const writeToNewFile = async (${parameters}) => {\n` +
+    `export const generateNewFile = async (${parameters}, newFileExtension = 'js') => {\n` +
     `\n` +
-    `  const fileText = createString(${parameters});\n` +
+    `  const fileText = generateNewFileText(${parameters});\n` +
     `\n` +
     `  try {\n` +
-    `    const promise = await fs.writeFile('newFile.js', fileText);\n` +
+    `    const promise = await fs.writeFile(\`newFile.\${newFileExtension}\`, fileText);\n` +
     `    return promise;\n` +
     `  } catch (error) {\n` +
     `    console.error(error);\n` +
     `  };\n` +
     `};\n` +
     `\n` +
-    `// writeToNewFile(${parametersWithQuotes});\n`
+    `// generateNewFile(${parametersWithQuotes});\n`
   );
 };
 
