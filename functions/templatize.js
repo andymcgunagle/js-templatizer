@@ -1,34 +1,38 @@
 import readline from 'readline';
 import fs from 'fs';
-import createEndOfFileText from './createEndOfFileText.js';
-import getParameters from './getParameters.js';
+
 import createBeginningOfFileText from './createBeginningOfFileText.js';
+import createEndOfFileText from './createEndOfFileText.js';
 import createTemplateText from './createTemplateText.js';
 import formatNewFileName from './formatNewFileName.js';
+import getParameters from './getParameters.js';
 
 /**
  * Turn any file into a new file with a template and a function that will write new files from that template. 
  * 
- * You can also turn any strings in the file you're templatizing into variables, which will also become arguments in the function that's generated.
+ * You can also turn any text in the file you're templatizing into variables.
  * 
- * @param {string} fileToTemplatize - The file to templatize. If this file is in the same directory as the file that's calling the templatize method, then you can just write the file name (including the file extension). If they're in different directories, you'll need to write a relative path to the file to templatize.
+ * @param {object} template - Object containing fileToTemplatize and, optionally, convertToVariables and nameOfNewFile. 
  * 
- * @param {{}} [stringsToReplace] - Optional parameter. This object's keys will be the strings in the file you're templatizing that you'd like to turn into variables. The corresponding values will become the names of the variables in the new template you'll generate.
+ * @param {string} template.fileToTemplatize - The name of the file to templatize (including the file extension). If the file you're templatizing is not in the same directory as the file that's calling this templatize method, you'll need to write a relative path.
  * 
- * @param {string} [nameOfNewFile] - Optional parameter that allows you to name the new file the templatize method will generate.
+ * @param {{}} [template.convertToVariables] - Optional parameter. This object's keys will be the text in the file you're templatizing that you'd like to turn into variables. The corresponding values will become the names of the variables in the new template you'll generate.
+ * 
+ * @param {string} [template.nameOfNewFile] - Optional parameter that allows you to name the new file the templatize method will generate.
  * 
  * @example
- * jsTemplatizer.templatize(
- *   'userModel.js',
- *   { user: 'param' },
- *   'modelGenerator'
- * ); 
+ * templatize({
+ *   fileToTemplatize: 'sample.txt',
+ *   convertToVariables: { world: 'param1' },
+ *   nameOfNewFile: 'myNewTemplate',
+ * }); 
  */
-const templatize = (
+const templatize = ({
   fileToTemplatize,
-  stringsToReplace,
-  nameOfNewFile = 'newTemplateGenerator.js'
-) => {
+  convertToVariables,
+  nameOfNewFile = 'newTemplate.js',
+}) => {
+  console.log(fileToTemplatize)
 
   // Create read stream for the file to templatize. The file to templatize must be in the same dir as the file that's calling the templatize method, otherwise a relative path will need to be written.
   const rl = readline.createInterface({
@@ -39,8 +43,8 @@ const templatize = (
   nameOfNewFile = formatNewFileName(nameOfNewFile);
   const writeStream = fs.createWriteStream(nameOfNewFile, { encoding: "utf8" });
 
-  // Generate parameters from the stringsToReplace array for the new templatizer function, which will be written to the new file 
-  const allParameters = getParameters(stringsToReplace);
+  // Generate parameters from the convertToVariables array for the new templatizer function, which will be written to the new file 
+  const allParameters = getParameters(convertToVariables);
   const parameters = allParameters[0];
   const parametersWithQuotes = allParameters[1];
 
@@ -53,7 +57,7 @@ const templatize = (
 
   // Create the template for the middle of the new file by reformatting each line then pushing it to the linesArray
   rl.on('line', (line) => {
-    const newLine = createTemplateText(line, stringsToReplace);
+    const newLine = createTemplateText(line, convertToVariables);
     linesArray.push(newLine);
   });
 

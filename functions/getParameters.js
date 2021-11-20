@@ -5,18 +5,18 @@
 // }
 // And appends a quick function to the string to capitalize the variables
 
-const getParameters = (stringsToReplace) => {
+const getParameters = (convertToVariables) => {
   let parameters = [];
   let parametersWithQuotes = [];
   let allParameters = [];
 
-  for (const replaceThisString in stringsToReplace) {
-    const replacement = stringsToReplace[replaceThisString];
+  for (const replaceThisString in convertToVariables) {
+    const replacement = convertToVariables[replaceThisString];
     parameters.push(replacement);
   };
 
-  for (const replaceThisString in stringsToReplace) {
-    const replacement = stringsToReplace[replaceThisString];
+  for (const replaceThisString in convertToVariables) {
+    const replacement = convertToVariables[replaceThisString];
     parametersWithQuotes.push(`'${replacement}'`);
   };
 

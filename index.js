@@ -5,15 +5,10 @@ const jsTemplatizer = {
 };
 
 // TEST
-// templatize('sample.txt', {
-//   world: 'Bobby',
-// }, 'myNewFile');
-
-// TODO: Refactor to an object
 // templatize({
-//   filetoTemplatize: 'sample.txt',
-//   convertToParams: [],
-//   templatizerFileName: 'myNewTemplatizer',
+//   fileToTemplatize: 'sample.txt',
+//   convertToVariables: { world: 'param1' },
+//   nameOfNewFile: 'myNewTemplate',
 // });
 
 export default jsTemplatizer;

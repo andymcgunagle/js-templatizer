@@ -59,7 +59,7 @@ At the bottom of the new file you'll notice the `generateNewFile` function call 
 
 The file to templatize. If this file is in the same directory as the file that's calling the templatize method, then you can just write the file name (including the file extension). If they're in different directories, you'll need to write a relative path to the file to templatize.
 
-2. #### stringsToReplace (optional)
+2. #### convertToVariables (optional)
 
 This object's keys will be the strings in the file you're templatizing that you'd like to turn into variables. The corresponding values will become the names of the variables in the new template you'll generate.
 
