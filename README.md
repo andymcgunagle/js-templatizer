@@ -2,9 +2,9 @@
 
 Transform any file into new file with a template of the original file.
 
-The new file will also include a function that enables you to generate additional new files from the template.
+The new file will include a function that enables you to generate additional new files from the template.
 
-You can also turn any strings in the original file you're templatizing into variables, which will also become arguments in the function that's generated.
+You can also turn any text in the original file you're templatizing into variables, which will become parameters in the function that's generated.
 
 ## Installation
 
@@ -19,12 +19,16 @@ Let's say we have a file called **userModel.js** we'd like to templatize so we c
 In the same directory as **userModel.js**, we have the following in **templatizer.js**:
 
 ```javascript
-import jsTemplatizer from 'js-templatizer';
+import { templatize } from 'js-templatizer';
 
-jsTemplatizer.templatize('userModel.js', { user: 'param1' }, 'modelGenerator');
+templatize({
+  fileToTemplatize: 'userModel.js',
+  convertToVariables: { user: 'param1' },
+  nameOfNewFile: 'modelGenerator',
+});
 ```
 
-Note that the first argument to the `templatize` method, the file to templatize, would need to be a relative path to **userModel.js** if **templatizer.js** and **userModel.js** were not in the same directory.
+Note that the `fileToTemplatize` property would need to be a relative path to **userModel.js** if **templatizer.js** and **userModel.js** were not in the same directory.
 
 For example, if **userModel.js** was one directory level up, the first argument to the function call in the example above would be `'../userModel.js'`.
 
@@ -55,17 +59,19 @@ At the bottom of the new file you'll notice the `generateNewFile` function call 
 
 ### templatize method parameters
 
-1. #### fileToTemplatize
+The templatize method accepts an object with the following properties:
+
+1. #### fileToTemplatize property
 
 The file to templatize. If this file is in the same directory as the file that's calling the templatize method, then you can just write the file name (including the file extension). If they're in different directories, you'll need to write a relative path to the file to templatize.
 
-2. #### convertToVariables (optional)
+2. #### convertToVariables property (optional)
 
-This object's keys will be the strings in the file you're templatizing that you'd like to turn into variables. The corresponding values will become the names of the variables in the new template you'll generate.
+This object's keys will be the text in the file you're templatizing you'd like to turn into variables. The corresponding values will become the names of the variables in the new template. These variables will also become parameters in the function that's generated.
 
-3. #### nameOfNewFile (optional)
+3. #### nameOfNewFile property (optional)
 
-Allows you to name the new file the templatize method will generate.
+Allows you to name the new file the templatize method will generate. If this property is not included, the new file will be named **newTemplate(randomNumber).js**.
 
 ## ES modules
 

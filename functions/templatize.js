@@ -10,7 +10,7 @@ import getParameters from './getParameters.js';
 /**
  * Turn any file into a new file with a template and a function that will write new files from that template. 
  * 
- * You can also turn any text in the file you're templatizing into variables.
+ * You can also turn any text in the original file you're templatizing into variables, which will become parameters in the function that's generated.
  * 
  * @param {object} template - Object containing fileToTemplatize and, optionally, convertToVariables and nameOfNewFile. 
  * 
